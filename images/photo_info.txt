@@ -17,3 +17,8 @@ La-pineda.jpg
 Daveglass
 https://en.wikipedia.org/wiki/Delicatessen#/media/File:La-pineda.jpg
 By <a href="//commons.wikimedia.org/w/index.php?title=User:Daveglass&amp;action=edit&amp;redlink=1" class="new" title="User:Daveglass (page does not exist)">Daveglass</a> - <span class="int-own-work" lang="en" xml:lang="en">Own work</span>, <a href="http://creativecommons.org/licenses/by/3.0" title="Creative Commons Attribution 3.0">CC BY 3.0</a>, <a href="https://commons.wikimedia.org/w/index.php?curid=14960760">Link</a>
+
+icecream.jpg
+Johnathan Nightingale
+https://c1.staticflickr.com/9/8011/7356295658_c810209e1d_b.jpg
+license https://creativecommons.org/licenses/by-sa/2.0/
