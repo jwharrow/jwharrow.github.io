@@ -1,12 +1,21 @@
+body {
+  font-family: "Helvetica" Helvetica sans-serif;
+  max-width: 1000px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 h1 {
   font-family: cursive;
   font-size: 24px;
   font-style: bold;
 }
 
-.image a {
+.image p{
   /*formating for image credits*/
-  
+  font-variant: small-caps;
+  margin: 0px;
+  font-size: small;
 }
 /*
 x Different font for h1
@@ -19,6 +28,7 @@ different color for visited links
 move top image to left and right rail. add margin
 change formating for footer
 style contest entry list
+rip all styling out of html, replace in css
 
 Padding and border added to at least one element
 Margin added to at least one element
