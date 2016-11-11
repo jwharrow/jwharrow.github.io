@@ -1,1 +1,31 @@
-body {background:blue;}
+h1 {
+  font-family: cursive;
+  font-size: 24px;
+  font-style: bold;
+}
+
+.image a {
+  /*formating for image credits*/
+  
+}
+/*
+x Different font for h1
+style image credits as class
+padding and border on images
+background image on results page
+center body
+center images w/in body
+different color for visited links
+move top image to left and right rail. add margin
+change formating for footer
+style contest entry list
+
+Padding and border added to at least one element
+Margin added to at least one element
+At least one centered element (a footer message can be nice for this)
+A background image on at least one element
+A different font on at least one element
+A few elements styled using a class
+A different color for visited links
+An element styled with an ID
+*/
