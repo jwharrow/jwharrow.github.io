@@ -1,6 +1,6 @@
 body {
   font-family: "Helvetica" Helvetica sans-serif;
-  max-width: 1000px;
+  max-width: 750px;
   margin-left: auto;
   margin-right: auto;
 }
@@ -17,15 +17,48 @@ h1 {
   margin: 0px;
   font-size: small;
 }
+
+#contest-results {
+  margin:0px auto 0px auto;
+}
+
+#contest-results-image{
+  border: 1px solid white; /* Don't understand why i can't remove this border without messing things up*/
+  margin:0px;
+  padding:0px;
+  position: relative;
+ }
+
+#contest-results-image img{
+  position: absolute;
+  top:14px;
+  left:0;
+  width: 100%;
+  height: auto;
+  opacity: .5;
+}
+
+#contest-results-text {
+  text-shadow: 4px 4px 10px grey;
+  padding: 0% 0% 100% 0%;
+  margin:0px 5px 0px 5px;
+}
+
+#icecream-credits {
+  float: right;
+  margin: 0px 4px;
+}
+
 /*
 x Different font for h1
-style image credits as class
+x style image credits as class
 padding and border on images
-background image on results page
-center body
+x background image on results page
+x center body
 center images w/in body
 different color for visited links
-move top image to left and right rail. add margin
+move top image to left and right rail. 
+  add margin. fix credits (vertical?). fixed position for div?
 change formating for footer
 style contest entry list
 rip all styling out of html, replace in css
