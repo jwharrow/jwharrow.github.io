@@ -1,7 +1,7 @@
 /* all pages */
 
 body {
-  font-family: "Helvetica" Helvetica sans-serif;
+  font-family: "Helvetica", Helvetica, sans-serif;
   max-width: 1000px;
   margin-left: auto;
   margin-right: auto;
@@ -9,9 +9,43 @@ body {
 
 h1 {
   font-family: cursive;
-  font-size: 32px;
-  font-style: bold;
+  font-size: 2.25em;
+  font-weight: bold;
 }
+
+h2 {
+  font-variant:small-caps; 
+  font-size: 2em;
+
+
+}
+
+h3 {
+  font-variant: small-caps;
+  font-size: 1.25em; 
+  font-style: italic;
+  font-weight: normal;
+}
+
+.em {
+  font-style: italic;
+}
+
+.strong {
+  font-weight: bold;
+}
+
+.strike {
+  text-decoration: line-through;
+}
+
+.code {
+  font-family: monospace;
+  font-size: 90%;
+  background-color: lightgrey;
+  padding: .2em;
+}
+
 
 .image p{
   /*formating for image credits*/
@@ -19,6 +53,7 @@ h1 {
   margin: 0px;
   font-size: small;
 }
+
 
 /* homepage */
 
@@ -56,7 +91,7 @@ h1 {
 } 
 
 .image img{
-  width:99%;
+  max-width:99%;
   height: auto;
   padding: 1px;
   border: 3px solid black;
@@ -109,7 +144,7 @@ x move top image to left and right rail.
 x   add margin. fix credits (vertical?). fixed position for div?
 change formating for footer
 style contest entry list
-rip all styling out of html, replace in css
+x rip all styling out of html, replace in css
 
 Padding and border added to at least one element
 Margin added to at least one element
