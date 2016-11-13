@@ -102,6 +102,11 @@ a:hover {background-color: lightyellow}
   margin:auto;
 }
 
+footer {
+  font-size: 70%;
+  position: relative;
+  top: 200px;
+}
 /*results page */
 
 #contest-results {
@@ -145,7 +150,7 @@ x center images w/in body
 x different color for visited links
 x move top image to left and right rail. 
 x   add margin. fix credits (vertical?). fixed position for div?
-change formating for footer
+x change formating for footer
 style contest entry list
 x rip all styling out of html, replace in css
 
