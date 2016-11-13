@@ -46,6 +46,9 @@ h3 {
   padding: .2em;
 }
 
+a:link {color: blue}
+a:visited {color: purple}
+a:hover {background-color: lightyellow}
 
 .image p{
   /*formating for image credits*/
@@ -139,7 +142,7 @@ x padding and border on images
 x background image on results page
 x center body
 x center images w/in body
-different color for visited links
+x different color for visited links
 x move top image to left and right rail. 
 x   add margin. fix credits (vertical?). fixed position for div?
 change formating for footer
