@@ -136,7 +136,6 @@ h1 {
 width: 70%;
 margin-right:auto;
 margin-left:auto;
-position:inline-block;
 }
 
 @media screen and (max-width:835px) {
