@@ -1,50 +1,50 @@
 /* all pages */
 
 body {
-  font-family: "Helvetica", Helvetica, sans-serif;
-  max-width: 1000px;
-  margin-left: auto;
-  margin-right: auto;
+font-family: "Helvetica", Helvetica, sans-serif;
+max-width: 1000px;
+margin-left: auto;
+margin-right: auto;
 }
 
 h1 {
-  font-family: cursive;
-  font-size: 2.25em;
-  font-weight: bold;
+font-family: cursive;
+font-size: 2.25em;
+font-weight: bold;
 }
 
 h2 {
-  font-variant:small-caps; 
-  font-size: 2em;
-  margin: 5px;
+font-variant:small-caps; 
+font-size: 2em;
+margin: 5px;
 
 
 }
 
 h3 {
-  font-variant: small-caps;
-  font-size: 1.25em; 
-  font-style: italic;
-  font-weight: normal;
+font-variant: small-caps;
+font-size: 1.25em; 
+font-style: italic;
+font-weight: normal;
 }
 
 .em {
-  font-style: italic;
+font-style: italic;
 }
 
 .strong {
-  font-weight: bold;
+font-weight: bold;
 }
 
 .strike {
-  text-decoration: line-through;
+text-decoration: line-through;
 }
 
 .code {
-  font-family: monospace;
-  font-size: 90%;
-  background-color: lightgrey;
-  padding: .2em;
+font-family: monospace;
+font-size: 90%;
+background-color: lightgrey;
+padding: .2em;
 }
 
 a:link {color: blue}
@@ -52,155 +52,179 @@ a:visited {color: purple}
 a:hover {background-color: lightyellow}
 
 .image p{
-  /*formating for image credits*/
-  font-variant: small-caps;
-  margin: 0px;
-  font-size: small;
+/*formating for image credits*/
+font-variant: small-caps;
+margin: 0px;
+font-size: small;
 }
 
 ul, ol {
-  margin: 0px 10%;
-  padding: 5px;
+margin: 0px 10%;
+padding: 5px;
 }
 
 li {
-  padding: 5px;
-  font-size: 80%;
+padding: 5px;
+font-size: 80%;
 }
 
 fieldset {
-  border:none;
-  margin:0px;
-  padding:0px;
+border:none;
+margin:0px;
+padding:0px;
 }
 form>label {
-  font-weight:bold;
-  margin-bottom: 15px;
-  display: block;
-  text-align: center;
-  background-color: lightyellow;
+font-weight:bold;
+margin-bottom: 15px;
+display: block;
+text-align: center;
+background-color: lightyellow;
 }
 
 textarea {
-  margin-left:4%;
-  margin-right:4%;
-  width: 90%;
-  height: 200px;
-  border-radius: 30px;
-  padding:10px;
-  border-color: grey;
+margin-left:4%;
+margin-right:4%;
+width: 90%;
+height: 200px;
+border-radius: 30px;
+padding:10px;
+border-color: grey;
 }
 
 button {
-  background-color: green;
-  text-align: center;
-  font-size:36px;
-  font-weight:bold;
-  color:white;
-  border:3px solid black;
-  border-radius: 60px;
-  padding: 20px 40px;
-  margin-left:20%;
-  margin-top:15px;
-  width: 60%;
+background-color: green;
+text-align: center;
+font-size:36px;
+font-weight:bold;
+color:white;
+border:3px solid black;
+border-radius: 60px;
+padding: 20px 40px;
+margin-left:20%;
+margin-top:15px;
+width: 60%;
 }
 
 footer {
-  font-size: 70%;
-  position: relative;
-  top: 200px;
+font-size: 70%;
+position: relative;
+top: 200px;
 }
+
+@media screen and (max-width: 260px) {
+div#icecream-credits {
+  display:none;
+}
+}
+
+@media screen and (max-width: 400px) {
+h1 {
+  font-size:1.75em;
+}
+}
+
+@media screen and (max-width: 500px) {
+#index-body div.image {
+  display:none;
+}
+}
+
 
 /* homepage */
 
 #index-main {
-  width: 70%;
-  margin-right:auto;
-  margin-left:auto;
-  position:inline-block;
- 
+width: 70%;
+margin-right:auto;
+margin-left:auto;
+position:inline-block;
+}
+
+@media screen and (max-width:835px) {
+main#index-main {
+  width:50%;
+}
 }
 
 .background-image-license {
-  background:white;
-  height:18px;
-  text-align: center;
+background:white;
+height:18px;
+text-align: center;
 }
 
 [id^="background"] {
-  width: 14%;
-  min-width: 125px;
-  padding-bottom:100%;
-  min-height:2000px; /*this is a bit of a cop out. couldn't figure out how to get the right fluid height for this*/
-  background-image: url("images/bread-food-salad-sandwich.jpg");
-  background-repeat: repeat-y;
-  background-size:100%,auto;
-  background-position: 0px 18px;
+width: 14%;
+min-width: 125px;
+padding-bottom:100%;
+min-height:2000px; /*this is a bit of a cop out. couldn't figure out how to get the right fluid height for this*/
+background-image: url("images/bread-food-salad-sandwich.jpg");
+background-repeat: repeat-y;
+background-size:100%,auto;
+background-position: 0px 18px;
 }
 
 #background-left { 
-  float:left;
+float:left;
 }
 
 #background-right {
-  float:right;
+float:right;
 } 
 
 .image img{
-  max-width:99%;
-  height: auto;
-  padding: 1px;
-  border: 3px solid black;
-  border-radius:30px;
-  margin:auto;
+max-width:99%;
+height: auto;
+padding: 1px;
+border: 3px solid black;
+border-radius:30px;
+margin:auto;
 }
 
 #contest-instructions {
-  border:4px double grey;
-  border-radius: 30px;
-  padding: 0px 10px;
-  margin-bottom:10px;
+border:4px double grey;
+border-radius: 30px;
+padding: 0px 10px;
+margin-bottom:10px;
 }
 
 #contest-instructions ol{
-  list-style-type: lower-roman;
+list-style-type: lower-roman;
 }
 
 #contest-instructions li{
-  letter-spacing: 1px;
+letter-spacing: 1px;
 }
 
 /*results page */
 
 #contest-results {
-  margin:0px auto 0px auto;
+margin:0px auto 0px auto;
 }
 
 #contest-results-image{
-  border: 1px solid white; /* Don't understand why i can't remove this border without messing things up*/
-  margin:0px;
-  padding:0px;
-  position: relative;
- }
+border: 1px solid white; /* Don't understand why i can't remove this border without messing things up*/
+margin:0px;
+padding:0px;
+position: relative;
+}
 
 #contest-results-image img{
-  position: absolute;
-  top:14px;
-  left:0;
-  width: 100%;
-  height: auto;
-  opacity: .5;
+position: absolute;
+top:14px;
+left:0;
+width: 100%;
+height: auto;
+opacity: .5;
 }
 
 #contest-results-text {
-  text-shadow: 4px 4px 10px grey;
-  padding: 0% 0% 100% 0%;
-  margin:0px 5px 0px 5px;
+text-shadow: 4px 4px 10px grey;
+padding: 0% 0% 100% 0%;
+margin:0px 5px 0px 5px;
 }
 
 #icecream-credits {
-  float: right;
-  margin: 0px 4px;
+float: right;
+margin: 0px 4px;
 }
 
 /*
@@ -214,7 +238,7 @@ x different color for visited links
 x move top image to left and right rail. 
 x   add margin. fix credits (vertical?). fixed position for div?
 x change formating for footer
-style contest entry list
+x style contest entry list
 x rip all styling out of html, replace in css
 
 Padding and border added to at least one element
