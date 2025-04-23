@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Padlock Challenge</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background-color: #f4f4f4;
+        }
+        #padlock {
+            font-size: 150px;
+            margin-bottom: 20px;
+            transition: transform 0.5s ease-in-out;
+        }
+        .container {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            margin-bottom: 40px;
+        }
+        .label-container {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+        .label {
+            width: 150px;
+            text-align: center;
+            font-size: 48px;
+            font-weight: bold;
+        }
+        .box {
+            width: 150px;
+            height: 150px;
+            font-size: 48px;
+            text-align: center;
+        }
+        #result {
+            display: none;
+            font-size: 64px;
+            margin-top: 40px;
+            font-weight: bold;
+            text-align: center;
+            width: calc(6 * 150px + 5 * 10px);
+        }
+        #extra-message {
+            display: none;
+            font-size: 64px;
+            margin-top: 20px;
+            font-weight: bold;
+            text-align: center;
+        }
+        @keyframes explode {
+            0% { opacity: 1; transform: scale(1); }
+            100% { opacity: 0; transform: scale(5); }
+        }
+    </style>
+</head>
+<body>
+    <div id="padlock">🔒</div>
+    <div class="label-container">
+        <div class="label">1</div>
+        <div class="label">2</div>
+        <div class="label">3</div>
+        <div class="label">4</div>
+        <div class="label">5</div>
+        <div class="label">6</div>
+    </div>
+    <div class="container">
+        <input type="number" class="box" min="0" max="99" data-correct="23">
+        <input type="number" class="box" min="0" max="99" data-correct="18">
+        <input type="number" class="box" min="0" max="99" data-correct="4">
+        <input type="number" class="box" min="0" max="99" data-correct="10">
+        <input type="number" class="box" min="0" max="99" data-correct="7">
+        <input type="number" class="box" min="0" max="99" data-correct="13">
+    </div>
+    <div id="result">What do you call Tigers doing Math?</div>
+    <div id="extra-message">j m q m w l a h v g g k d</div>
+    <script>
+        document.querySelectorAll('.box').forEach(box => {
+            box.addEventListener('input', function() {
+                if (this.value == this.dataset.correct) {
+                    this.style.backgroundColor = 'lightgreen';
+                    this.disabled = true;
+                }
+                checkUnlock();
+            });
+        });
+
+        function checkUnlock() {
+            if ([...document.querySelectorAll('.box')].every(box => box.disabled)) {
+                let padlock = document.getElementById('padlock');
+                padlock.textContent = '🎆 🔓 🎇';
+                padlock.style.transform = 'scale(1.5)';
+                setTimeout(() => {
+                    padlock.style.transform = 'scale(1)';
+                }, 500);
+                document.getElementById('result').style.display = 'block';
+                document.getElementById('extra-message').style.display = 'block';
+            }
+        }
+    </script>
+</body>
+</html>
+
