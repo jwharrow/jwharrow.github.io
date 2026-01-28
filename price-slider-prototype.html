@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Price Slider Prototype</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: #1a1a1a;
+      color: white;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 20px;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 375px;
+      background: #2a2a2a;
+      border-radius: 16px;
+      padding: 24px;
+      margin-bottom: 20px;
+    }
+
+    .badge {
+      text-align: center;
+      margin-bottom: 8px;
+    }
+
+    .badge-text {
+      font-size: 18px;
+      font-weight: 500;
+    }
+
+    .badge-subtitle {
+      font-size: 12px;
+      color: #888;
+      margin-top: 4px;
+    }
+
+    .price-display {
+      text-align: center;
+      margin: 20px 0;
+    }
+
+    .current-price {
+      font-size: 36px;
+      font-weight: 700;
+    }
+
+    .price-difference {
+      font-size: 16px;
+      margin-top: 4px;
+    }
+
+    .price-difference.positive {
+      color: #ff6b6b;
+    }
+
+    .price-difference.negative {
+      color: #4ecdc4;
+    }
+
+    .slider-container {
+      margin: 24px 0;
+      position: relative;
+    }
+
+    .slider-track {
+      height: 8px;
+      background: linear-gradient(to right, 
+        #4ecdc4 0%, 
+        #4ecdc4 var(--great-pos), 
+        #7bed9f var(--great-pos), 
+        #7bed9f var(--good-pos), 
+        #ffd93d var(--good-pos), 
+        #ffd93d var(--fair-pos), 
+        #888 var(--fair-pos), 
+        #888 100%
+      );
+      border-radius: 4px;
+      position: relative;
+    }
+
+    .slider-input {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 100%;
+      height: 8px;
+      background: transparent;
+      position: absolute;
+      top: 0;
+      left: 0;
+      cursor: pointer;
+    }
+
+    .slider-input::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 28px;
+      height: 28px;
+      background: white;
+      border-radius: 50%;
+      cursor: pointer;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+      margin-top: -10px;
+    }
+
+    .slider-input::-moz-range-thumb {
+      width: 28px;
+      height: 28px;
+      background: white;
+      border-radius: 50%;
+      cursor: pointer;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+      border: none;
+    }
+
+    .slider-labels {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 8px;
+      font-size: 12px;
+      color: #888;
+    }
+
+    .price-rank {
+      text-align: center;
+      margin-top: 20px;
+      padding: 12px;
+      background: #333;
+      border-radius: 20px;
+      display: inline-block;
+    }
+
+    .price-rank-label {
+      font-size: 14px;
+      color: #888;
+    }
+
+    .price-rank-value {
+      font-size: 18px;
+      font-weight: 600;
+      margin-left: 8px;
+    }
+
+    .rank-container {
+      text-align: center;
+    }
+
+    /* Controls section */
+    .controls {
+      width: 100%;
+      max-width: 375px;
+      background: #333;
+      border-radius: 12px;
+      padding: 16px;
+    }
+
+    .controls h3 {
+      font-size: 14px;
+      color: #888;
+      margin-bottom: 12px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .control-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 12px;
+    }
+
+    .control-row label {
+      font-size: 14px;
+    }
+
+    .control-row input {
+      width: 100px;
+      padding: 8px 12px;
+      border: 1px solid #555;
+      border-radius: 8px;
+      background: #2a2a2a;
+      color: white;
+      font-size: 14px;
+      text-align: right;
+    }
+
+    .preset-buttons {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .preset-btn {
+      padding: 8px 16px;
+      border: 1px solid #555;
+      border-radius: 20px;
+      background: transparent;
+      color: white;
+      font-size: 12px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .preset-btn:hover {
+      background: #444;
+    }
+
+    .preset-btn.active {
+      background: #4ecdc4;
+      border-color: #4ecdc4;
+      color: #1a1a1a;
+    }
+
+    /* Badge colors */
+    .badge-great { color: #4ecdc4; }
+    .badge-good { color: #7bed9f; }
+    .badge-fair { color: #ffd93d; }
+    .badge-none { color: #888; }
+
+    .debug-info {
+      margin-top: 20px;
+      font-size: 11px;
+      color: #666;
+      text-align: left;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="badge">
+      <div class="badge-text" id="badgeText">This vehicle is a <span id="badgeLabel">Fair Deal</span></div>
+      <div class="badge-subtitle">Powered by Cars.com Deal Gauge™</div>
+    </div>
+
+    <div class="price-display">
+      <div class="current-price" id="currentPrice">$17,000</div>
+      <div class="price-difference" id="priceDifference"></div>
+    </div>
+
+    <div class="slider-container">
+      <div class="slider-track" id="sliderTrack"></div>
+      <input type="range" class="slider-input" id="priceSlider" 
+             min="10000" max="22000" value="17000" step="1">
+    </div>
+    <div class="slider-labels">
+      <span>$10,000</span>
+      <span>$22,000</span>
+    </div>
+
+    <div class="rank-container">
+      <div class="price-rank">
+        <span class="price-rank-label">Price rank:</span>
+        <span class="price-rank-value" id="priceRank">8/13</span>
+      </div>
+    </div>
+
+    <div class="debug-info" id="debugInfo"></div>
+  </div>
+
+  <div class="controls">
+    <h3>Slider Controls</h3>
+    
+    <div class="control-row">
+      <label>Step Size ($)</label>
+      <input type="number" id="stepSize" value="100" min="1" max="1000">
+    </div>
+
+    <div style="margin-bottom: 8px; font-size: 12px; color: #888;">Quick presets:</div>
+    <div class="preset-buttons">
+      <button class="preset-btn" data-step="1">$1</button>
+      <button class="preset-btn" data-step="10">$10</button>
+      <button class="preset-btn" data-step="50">$50</button>
+      <button class="preset-btn active" data-step="100">$100</button>
+      <button class="preset-btn" data-step="250">$250</button>
+      <button class="preset-btn" data-step="500">$500</button>
+    </div>
+  </div>
+
+  <script>
+    // === HARDCODED DATA (will come from server) ===
+    const THRESHOLDS = {
+      min: 10000,
+      great: 13000,
+      good: 16000,
+      fair: 19000,
+      max: 22000
+    };
+
+    const ORIGINAL_PRICE = 17000;
+    const ORIGINAL_BADGE = 'FAIR';
+
+    // Comparable vehicle prices for ranking
+    const PRICE_RANK_LIST = [5000, 6000, 6500, 7000, 11000, 12000, 15000, 18000, 19000, 22000, 23000, 23333, 24000];
+
+    // === DOM ELEMENTS ===
+    const slider = document.getElementById('priceSlider');
+    const currentPriceEl = document.getElementById('currentPrice');
+    const priceDifferenceEl = document.getElementById('priceDifference');
+    const badgeLabelEl = document.getElementById('badgeLabel');
+    const priceRankEl = document.getElementById('priceRank');
+    const stepSizeInput = document.getElementById('stepSize');
+    const sliderTrack = document.getElementById('sliderTrack');
+    const debugInfoEl = document.getElementById('debugInfo');
+    const presetButtons = document.querySelectorAll('.preset-btn');
+
+    // === HELPER FUNCTIONS ===
+    function formatPrice(price) {
+      return '$' + price.toLocaleString();
+    }
+
+    function getBadge(price) {
+      if (price <= THRESHOLDS.great) {
+        return { label: 'Great Deal', class: 'badge-great' };
+      } else if (price <= THRESHOLDS.good) {
+        return { label: 'Good Deal', class: 'badge-good' };
+      } else if (price <= THRESHOLDS.fair) {
+        return { label: 'Fair Deal', class: 'badge-fair' };
+      } else {
+        return { label: 'Not Badged', class: 'badge-none' };
+      }
+    }
+
+    function calculatePriceRank(price) {
+      // Count how many prices in the list are >= current price
+      // Lower rank = better deal
+      const sortedPrices = [...PRICE_RANK_LIST].sort((a, b) => a - b);
+      
+      // Find position where this price would rank
+      let rank = 1;
+      for (const p of sortedPrices) {
+        if (price > p) {
+          rank++;
+        } else {
+          break;
+        }
+      }
+      
+      return { rank, total: sortedPrices.length };
+    }
+
+    function updateSliderTrackGradient() {
+      const range = THRESHOLDS.max - THRESHOLDS.min;
+      const greatPos = ((THRESHOLDS.great - THRESHOLDS.min) / range * 100).toFixed(1);
+      const goodPos = ((THRESHOLDS.good - THRESHOLDS.min) / range * 100).toFixed(1);
+      const fairPos = ((THRESHOLDS.fair - THRESHOLDS.min) / range * 100).toFixed(1);
+      
+      sliderTrack.style.setProperty('--great-pos', greatPos + '%');
+      sliderTrack.style.setProperty('--good-pos', goodPos + '%');
+      sliderTrack.style.setProperty('--fair-pos', fairPos + '%');
+    }
+
+    function updateDisplay(price) {
+      // Update price
+      currentPriceEl.textContent = formatPrice(price);
+
+      // Update difference
+      const diff = price - ORIGINAL_PRICE;
+      if (diff > 0) {
+        priceDifferenceEl.textContent = '+' + formatPrice(diff);
+        priceDifferenceEl.className = 'price-difference positive';
+      } else if (diff < 0) {
+        priceDifferenceEl.textContent = '-' + formatPrice(Math.abs(diff));
+        priceDifferenceEl.className = 'price-difference negative';
+      } else {
+        priceDifferenceEl.textContent = '';
+        priceDifferenceEl.className = 'price-difference';
+      }
+
+      // Update badge
+      const badge = getBadge(price);
+      badgeLabelEl.textContent = badge.label;
+      badgeLabelEl.className = badge.class;
+
+      // Update rank
+      const { rank, total } = calculatePriceRank(price);
+      priceRankEl.textContent = `${rank}/${total}`;
+
+      // Debug info
+      debugInfoEl.innerHTML = `
+        Current: ${formatPrice(price)} | Original: ${formatPrice(ORIGINAL_PRICE)}<br>
+        Badge thresholds: Great ≤${formatPrice(THRESHOLDS.great)}, Good ≤${formatPrice(THRESHOLDS.good)}, Fair ≤${formatPrice(THRESHOLDS.fair)}<br>
+        Step size: $${slider.step}
+      `;
+    }
+
+    function updateStepSize(step) {
+      step = Math.max(1, Math.min(1000, parseInt(step) || 100));
+      slider.step = step;
+      stepSizeInput.value = step;
+
+      // Snap current value to new step
+      const currentVal = parseInt(slider.value);
+      const snappedVal = Math.round(currentVal / step) * step;
+      slider.value = Math.max(THRESHOLDS.min, Math.min(THRESHOLDS.max, snappedVal));
+      updateDisplay(parseInt(slider.value));
+
+      // Update preset button states
+      presetButtons.forEach(btn => {
+        btn.classList.toggle('active', parseInt(btn.dataset.step) === step);
+      });
+    }
+
+    // === EVENT LISTENERS ===
+    slider.addEventListener('input', (e) => {
+      updateDisplay(parseInt(e.target.value));
+    });
+
+    stepSizeInput.addEventListener('change', (e) => {
+      updateStepSize(e.target.value);
+    });
+
+    stepSizeInput.addEventListener('keyup', (e) => {
+      if (e.key === 'Enter') {
+        updateStepSize(e.target.value);
+      }
+    });
+
+    presetButtons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        updateStepSize(btn.dataset.step);
+      });
+    });
+
+    // === INITIALIZE ===
+    updateSliderTrackGradient();
+    updateStepSize(100);
+    updateDisplay(ORIGINAL_PRICE);
+  </script>
+</body>
+</html>
